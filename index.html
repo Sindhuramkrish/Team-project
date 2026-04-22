@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Student Attendance Tracker</h1>
+
+  <div class="form">
+    <input type="text" id="studentName" placeholder="Student Name">
+    <select id="status">
+      <option value="Present">Present</option>
+      <option value="Absent">Absent</option>
+    </select>
+    <button onclick="markAttendance()">Submit</button>
+  </div>
+
+  <h3>Total Students: <span id="count">0</span></h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="attendanceTable"></tbody>
+  </table>
+</div>
+
+<script src="data.js"></script>
+<script src="utils.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
