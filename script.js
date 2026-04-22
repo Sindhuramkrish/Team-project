@@ -1,48 +1,21 @@
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+function markAttendance() {
+  let name = document.getElementById("studentName").value.trim();
+  let status = document.getElementById("status").value;
 
-function renderTasks() {
-    const list = document.getElementById("taskList");
-    list.innerHTML = "";
+  if (name === "") {
+    alert("Enter student name");
+    return;
+  }
 
-    tasks.forEach((task, index) => {
-        let li = document.createElement("li");
-        li.textContent = task.text;
+  let student = {
+    id: nextId++,
+    name: name,
+    status: status,
+    date: getTodayDate()
+  };
 
-        if (task.done) li.style.textDecoration = "line-through";
+  attendance.push(student);
 
-        li.onclick = () => toggleTask(index);
-
-        let delBtn = document.createElement("button");
-        delBtn.textContent = "❌";
-        delBtn.onclick = (e) => {
-            e.stopPropagation();
-            deleteTask(index);
-        };
-
-        li.appendChild(delBtn);
-        list.appendChild(li);
-    });
-
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderAttendance();
+  clearForm();
 }
-
-function addTask() {
-    const input = document.getElementById("taskInput");
-    if (input.value.trim() === "") return;
-
-    tasks.push({ text: input.value, done: false });
-    input.value = "";
-    renderTasks();
-}
-
-function toggleTask(index) {
-    tasks[index].done = !tasks[index].done;
-    renderTasks();
-}
-
-function deleteTask(index) {
-    tasks.splice(index, 1);
-    renderTasks();
-}
-
-renderTasks();
